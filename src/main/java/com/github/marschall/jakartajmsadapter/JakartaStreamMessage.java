@@ -1,6 +1,5 @@
 package com.github.marschall.jakartajmsadapter;
 
-import jakarta.jms.BytesMessage;
 import jakarta.jms.JMSException;
 import jakarta.jms.StreamMessage;
 
@@ -15,146 +14,218 @@ final class JakartaStreamMessage extends JakartaMessage implements StreamMessage
 
   @Override
   public boolean readBoolean() throws JMSException {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return javaxMessage.readBoolean();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public byte readByte() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readByte();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public short readShort() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readShort();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public char readChar() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readChar();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public int readInt() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readInt();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public long readLong() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readLong();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public float readFloat() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readFloat();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public double readDouble() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readDouble();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public String readString() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return javaxMessage.readString();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public int readBytes(byte[] value) throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return javaxMessage.readBytes(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Object readObject() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return javaxMessage.readString();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeBoolean(boolean value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeBoolean(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeByte(byte value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeByte(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeShort(short value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeShort(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeChar(char value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeChar(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeInt(int value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeInt(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeLong(long value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeLong(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeFloat(float value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeFloat(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeDouble(double value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeDouble(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeString(String value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeString(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeBytes(byte[] value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeBytes(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeBytes(byte[] value, int offset, int length) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeBytes(value, offset, length);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void writeObject(Object value) throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.writeObject(value);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void reset() throws JMSException {
-    // TODO Auto-generated method stub
-    
+    try {
+      javaxMessage.reset();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
 }
