@@ -6,8 +6,8 @@ import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 
-abstract sealed class JakartaMessage implements Message, Wrapper
-permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStreamMessage, JakartaTextMessage {
+sealed class JakartaMessage implements Message, Wrapper
+    permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStreamMessage, JakartaTextMessage {
 
   private final javax.jms.Message javaxMessage;
 
@@ -18,7 +18,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public String getJMSMessageID() throws JMSException {
     try {
-      return javaxMessage.getJMSMessageID();
+      return this.javaxMessage.getJMSMessageID();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -27,7 +27,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSMessageID(String id) throws JMSException {
     try {
-      javaxMessage.setJMSMessageID(id);
+      this.javaxMessage.setJMSMessageID(id);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -36,7 +36,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public long getJMSTimestamp() throws JMSException {
     try {
-      return javaxMessage.getJMSTimestamp();
+      return this.javaxMessage.getJMSTimestamp();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -45,7 +45,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSTimestamp(long timestamp) throws JMSException {
     try {
-      javaxMessage.setJMSTimestamp(timestamp);
+      this.javaxMessage.setJMSTimestamp(timestamp);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -54,7 +54,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public byte[] getJMSCorrelationIDAsBytes() throws JMSException {
     try {
-      return javaxMessage.getJMSCorrelationIDAsBytes();
+      return this.javaxMessage.getJMSCorrelationIDAsBytes();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -63,7 +63,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSCorrelationIDAsBytes(byte[] correlationID) throws JMSException {
     try {
-      javaxMessage.setJMSCorrelationIDAsBytes(correlationID);
+      this.javaxMessage.setJMSCorrelationIDAsBytes(correlationID);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -72,7 +72,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSCorrelationID(String correlationID) throws JMSException {
     try {
-      javaxMessage.setJMSCorrelationID(correlationID);
+      this.javaxMessage.setJMSCorrelationID(correlationID);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -81,7 +81,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public String getJMSCorrelationID() throws JMSException {
     try {
-      return javaxMessage.getJMSCorrelationID();
+      return this.javaxMessage.getJMSCorrelationID();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -90,7 +90,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public Destination getJMSReplyTo() throws JMSException {
     try {
-      return JakartaDestination.fromJavax(javaxMessage.getJMSReplyTo());
+      return JakartaDestination.fromJavax(this.javaxMessage.getJMSReplyTo());
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -99,7 +99,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSReplyTo(Destination replyTo) throws JMSException {
     try {
-      javaxMessage.setJMSReplyTo(Wrapper.unwrapObject(replyTo, javax.jms.Destination.class));
+      this.javaxMessage.setJMSReplyTo(Wrapper.unwrapObject(replyTo, javax.jms.Destination.class));
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -108,7 +108,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public Destination getJMSDestination() throws JMSException {
     try {
-      return JakartaDestination.fromJavax(javaxMessage.getJMSDestination());
+      return JakartaDestination.fromJavax(this.javaxMessage.getJMSDestination());
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -117,7 +117,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSDestination(Destination destination) throws JMSException {
     try {
-      javaxMessage.setJMSDestination(Wrapper.unwrapObject(destination, javax.jms.Destination.class));
+      this.javaxMessage.setJMSDestination(Wrapper.unwrapObject(destination, javax.jms.Destination.class));
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -126,7 +126,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public int getJMSDeliveryMode() throws JMSException {
     try {
-      return javaxMessage.getJMSDeliveryMode();
+      return this.javaxMessage.getJMSDeliveryMode();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -135,7 +135,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSDeliveryMode(int deliveryMode) throws JMSException {
     try {
-      javaxMessage.setJMSDeliveryMode(deliveryMode);
+      this.javaxMessage.setJMSDeliveryMode(deliveryMode);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -144,7 +144,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public boolean getJMSRedelivered() throws JMSException {
     try {
-      return javaxMessage.getJMSRedelivered();
+      return this.javaxMessage.getJMSRedelivered();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -153,7 +153,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSRedelivered(boolean redelivered) throws JMSException {
     try {
-      javaxMessage.setJMSRedelivered(redelivered);
+      this.javaxMessage.setJMSRedelivered(redelivered);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -162,7 +162,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public String getJMSType() throws JMSException {
     try {
-      return javaxMessage.getJMSType();
+      return this.javaxMessage.getJMSType();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -171,7 +171,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSType(String type) throws JMSException {
     try {
-      javaxMessage.setJMSType(type);
+      this.javaxMessage.setJMSType(type);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -180,7 +180,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public long getJMSExpiration() throws JMSException {
     try {
-      return javaxMessage.getJMSExpiration();
+      return this.javaxMessage.getJMSExpiration();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -189,7 +189,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSExpiration(long expiration) throws JMSException {
     try {
-      javaxMessage.setJMSExpiration(expiration);
+      this.javaxMessage.setJMSExpiration(expiration);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -198,7 +198,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public long getJMSDeliveryTime() throws JMSException {
     try {
-      return javaxMessage.getJMSDeliveryTime();
+      return this.javaxMessage.getJMSDeliveryTime();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -207,7 +207,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSDeliveryTime(long deliveryTime) throws JMSException {
     try {
-      javaxMessage.setJMSDeliveryTime(deliveryTime);
+      this.javaxMessage.setJMSDeliveryTime(deliveryTime);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -216,7 +216,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public int getJMSPriority() throws JMSException {
     try {
-      return javaxMessage.getJMSPriority();
+      return this.javaxMessage.getJMSPriority();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -225,7 +225,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setJMSPriority(int priority) throws JMSException {
     try {
-      javaxMessage.setJMSPriority(priority);
+      this.javaxMessage.setJMSPriority(priority);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -234,7 +234,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void clearProperties() throws JMSException {
     try {
-      javaxMessage.clearProperties();
+      this.javaxMessage.clearProperties();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -243,7 +243,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public boolean propertyExists(String name) throws JMSException {
     try {
-      return javaxMessage.propertyExists(name);
+      return this.javaxMessage.propertyExists(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -252,7 +252,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public boolean getBooleanProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getBooleanProperty(name);
+      return this.javaxMessage.getBooleanProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -261,7 +261,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public byte getByteProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getByteProperty(name);
+      return this.javaxMessage.getByteProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -270,7 +270,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public short getShortProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getShortProperty(name);
+      return this.javaxMessage.getShortProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -279,7 +279,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public int getIntProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getIntProperty(name);
+      return this.javaxMessage.getIntProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -288,7 +288,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public long getLongProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getLongProperty(name);
+      return this.javaxMessage.getLongProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -297,7 +297,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public float getFloatProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getFloatProperty(name);
+      return this.javaxMessage.getFloatProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -306,7 +306,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public double getDoubleProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getDoubleProperty(name);
+      return this.javaxMessage.getDoubleProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -315,7 +315,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public String getStringProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getStringProperty(name);
+      return this.javaxMessage.getStringProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -324,7 +324,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public Object getObjectProperty(String name) throws JMSException {
     try {
-      return javaxMessage.getObjectProperty(name);
+      return this.javaxMessage.getObjectProperty(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -334,7 +334,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @SuppressWarnings("rawtypes")
   public Enumeration getPropertyNames() throws JMSException {
     try {
-      return javaxMessage.getPropertyNames();
+      return this.javaxMessage.getPropertyNames();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -343,7 +343,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setBooleanProperty(String name, boolean value) throws JMSException {
     try {
-      javaxMessage.setBooleanProperty(name, value);
+      this.javaxMessage.setBooleanProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -352,7 +352,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setByteProperty(String name, byte value) throws JMSException {
     try {
-      javaxMessage.setByteProperty(name, value);
+      this.javaxMessage.setByteProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -361,7 +361,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setShortProperty(String name, short value) throws JMSException {
     try {
-      javaxMessage.setShortProperty(name, value);
+      this.javaxMessage.setShortProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -370,7 +370,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setIntProperty(String name, int value) throws JMSException {
     try {
-      javaxMessage.setIntProperty(name, value);
+      this.javaxMessage.setIntProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -379,7 +379,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setLongProperty(String name, long value) throws JMSException {
     try {
-      javaxMessage.setLongProperty(name, value);
+      this.javaxMessage.setLongProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -388,7 +388,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setFloatProperty(String name, float value) throws JMSException {
     try {
-      javaxMessage.setFloatProperty(name, value);
+      this.javaxMessage.setFloatProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -397,7 +397,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setDoubleProperty(String name, double value) throws JMSException {
     try {
-      javaxMessage.setDoubleProperty(name, value);
+      this.javaxMessage.setDoubleProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -406,7 +406,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setStringProperty(String name, String value) throws JMSException {
     try {
-      javaxMessage.setStringProperty(name, value);
+      this.javaxMessage.setStringProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -415,7 +415,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void setObjectProperty(String name, Object value) throws JMSException {
     try {
-      javaxMessage.setObjectProperty(name, value);
+      this.javaxMessage.setObjectProperty(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -424,7 +424,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void acknowledge() throws JMSException {
     try {
-      javaxMessage.acknowledge();
+      this.javaxMessage.acknowledge();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -433,7 +433,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public void clearBody() throws JMSException {
     try {
-      javaxMessage.clearBody();
+      this.javaxMessage.clearBody();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -443,7 +443,7 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public <T> T getBody(Class<T> c) throws JMSException {
     try {
-      return javaxMessage.getBody(c);
+      return this.javaxMessage.getBody(c);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -452,19 +452,15 @@ permits JakartaBytesMessage, JakartaMapMessage, JakartaObjectMessage, JakartaStr
   @Override
   public boolean isBodyAssignableTo(@SuppressWarnings("rawtypes") Class c) throws JMSException {
     try {
-      return javaxMessage.isBodyAssignableTo(c);
+      return this.javaxMessage.isBodyAssignableTo(c);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
   }
 
   @Override
-  public <T> T unwrap(Class<T> clazz) throws JMSException {
-    if (clazz.isInstance(this.javaxMessage)) {
-      return clazz.cast(this.javaxMessage);
-    } else {
-      throw new JMSException(this.javaxMessage.getClass() + " can not be adapted to: " + clazz);
-    }
+  public Object getJavaxObject() {
+    return this.javaxMessage;
   }
 
 }

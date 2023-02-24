@@ -31,86 +31,128 @@ final class JakartaSession implements Session {
 
   @Override
   public BytesMessage createBytesMessage() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaBytesMessage(this.javaxSession.createBytesMessage());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public MapMessage createMapMessage() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaMapMessage(this.javaxSession.createMapMessage());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Message createMessage() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaMessage(this.javaxSession.createMessage());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public ObjectMessage createObjectMessage() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaObjectMessage(this.javaxSession.createObjectMessage());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public ObjectMessage createObjectMessage(Serializable object) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaObjectMessage(this.javaxSession.createObjectMessage(object));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public StreamMessage createStreamMessage() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaStreamMessage(this.javaxSession.createStreamMessage());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public TextMessage createTextMessage() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTextMessage(this.javaxSession.createTextMessage());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public TextMessage createTextMessage(String text) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTextMessage(this.javaxSession.createTextMessage(text));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public boolean getTransacted() throws JMSException {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return this.javaxSession.getTransacted();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public int getAcknowledgeMode() throws JMSException {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxSession.getAcknowledgeMode();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void commit() throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxSession.commit();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void rollback() throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxSession.rollback();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void close() throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxSession.close();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void recover() throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxSession.recover();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -127,14 +169,16 @@ final class JakartaSession implements Session {
 
   @Override
   public void run() {
-    // TODO Auto-generated method stub
-
+    this.javaxSession.run();
   }
 
   @Override
   public MessageProducer createProducer(Destination destination) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaMessageProducer(this.javaxSession.createProducer(Wrapper.unwrapObject(destination, javax.jms.Destination.class)));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -171,14 +215,20 @@ final class JakartaSession implements Session {
 
   @Override
   public Queue createQueue(String queueName) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaQueue(this.javaxSession.createQueue(queueName));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Topic createTopic(String topicName) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTopic(this.javaxSession.createTopic(topicName));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override

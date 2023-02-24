@@ -20,32 +20,47 @@ final class JakartaConnection implements Connection {
 
   @Override
   public Session createSession(boolean transacted, int acknowledgeMode) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaSession(this.javaxConnection.createSession(transacted, acknowledgeMode));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Session createSession(int sessionMode) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaSession(this.javaxConnection.createSession(sessionMode));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Session createSession() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaSession(this.javaxConnection.createSession());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public String getClientID() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxConnection.getClientID();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void setClientID(String clientID) throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxConnection.setClientID(clientID);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -68,20 +83,29 @@ final class JakartaConnection implements Connection {
 
   @Override
   public void start() throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxConnection.start();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void stop() throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxConnection.stop();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void close() throws JMSException {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxConnection.close();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override

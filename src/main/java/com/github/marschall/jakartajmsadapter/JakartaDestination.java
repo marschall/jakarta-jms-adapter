@@ -3,7 +3,7 @@ package com.github.marschall.jakartajmsadapter;
 import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
 
-abstract sealed class JakartaDestination implements Destination
+abstract sealed class JakartaDestination implements Destination, Wrapper
     permits JakartaQueue, JakartaTopic {
 
   private final javax.jms.Destination javaxDestination;
@@ -13,10 +13,15 @@ abstract sealed class JakartaDestination implements Destination
   }
 
   @Override
-  public String toString() {
-    return javaxDestination.toString();
+  public Object getJavaxObject() {
+    return this.javaxDestination;
   }
-  
+
+  @Override
+  public String toString() {
+    return this.javaxDestination.toString();
+  }
+
   static Destination fromJavax(javax.jms.Destination destination) throws JMSException {
     if (destination instanceof javax.jms.Topic) {
       if (destination instanceof javax.jms.TemporaryTopic) {
