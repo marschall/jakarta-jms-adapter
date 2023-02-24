@@ -264,40 +264,62 @@ final class JakartaSession implements Session {
 
   @Override
   public MessageConsumer createDurableConsumer(Topic topic, String name) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaMessageConsumer(this.javaxSession.createDurableConsumer(javaxTopic, name));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public MessageConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal)
-      throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+  public MessageConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal) throws JMSException {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaMessageConsumer(this.javaxSession.createDurableConsumer(javaxTopic, name, messageSelector, noLocal));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public MessageConsumer createSharedDurableConsumer(Topic topic, String name) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaMessageConsumer(this.javaxSession.createSharedDurableConsumer(javaxTopic, name));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public MessageConsumer createSharedDurableConsumer(Topic topic, String name, String messageSelector)
-      throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+  public MessageConsumer createSharedDurableConsumer(Topic topic, String name, String messageSelector) throws JMSException {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaMessageConsumer(this.javaxSession.createSharedDurableConsumer(javaxTopic, name, messageSelector));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public QueueBrowser createBrowser(Queue queue) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Queue javaxQueue = Wrapper.unwrapObject(queue, javax.jms.Queue.class);
+    try {
+      return new JakartaQueueBrowser(this.javaxSession.createBrowser(javaxQueue));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public QueueBrowser createBrowser(Queue queue, String messageSelector) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Queue javaxQueue = Wrapper.unwrapObject(queue, javax.jms.Queue.class);
+    try {
+      return new JakartaQueueBrowser(this.javaxSession.createBrowser(javaxQueue, messageSelector));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override

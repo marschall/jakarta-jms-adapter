@@ -3,7 +3,7 @@ package com.github.marschall.jakartajmsadapter;
 import jakarta.jms.JMSException;
 import jakarta.jms.TextMessage;
 
-public final class JakartaTextMessage extends JakartaMessage implements TextMessage {
+final class JakartaTextMessage extends JakartaMessage implements TextMessage {
 
   private final javax.jms.TextMessage javaxMessage;
 
@@ -15,7 +15,7 @@ public final class JakartaTextMessage extends JakartaMessage implements TextMess
   @Override
   public void setText(String string) throws JMSException {
     try {
-      javaxMessage.setText(string);
+      this.javaxMessage.setText(string);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -24,7 +24,7 @@ public final class JakartaTextMessage extends JakartaMessage implements TextMess
   @Override
   public String getText() throws JMSException {
     try {
-      return javaxMessage.getText();
+      return this.javaxMessage.getText();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }

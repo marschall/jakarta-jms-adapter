@@ -465,7 +465,7 @@ sealed class JakartaMessage implements Message, Wrapper
     return this.javaxMessage;
   }
 
-  static Message fromJavax(javax.jms.Message message) throws JMSException {
+  static Message fromJavax(javax.jms.Message message) {
     if (message instanceof javax.jms.BytesMessage bytesMessage) {
       return new JakartaBytesMessage(bytesMessage);
     } else if (message instanceof javax.jms.MapMessage mapMessage) {

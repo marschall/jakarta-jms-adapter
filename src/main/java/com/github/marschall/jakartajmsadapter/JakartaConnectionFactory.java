@@ -1,15 +1,21 @@
 package com.github.marschall.jakartajmsadapter;
 
+import java.util.Objects;
+
 import jakarta.jms.Connection;
 import jakarta.jms.ConnectionFactory;
 import jakarta.jms.JMSContext;
 import jakarta.jms.JMSException;
 
+/**
+ * Adapts a {@link javax.jms.ConnectionFactory} to a {@link jakarta.jms.ConnectionFactory}
+ */
 public final class JakartaConnectionFactory implements ConnectionFactory {
 
   private final javax.jms.ConnectionFactory javaxConnectionFactory;
 
   public JakartaConnectionFactory(javax.jms.ConnectionFactory javaxConnectionFactory) {
+    Objects.requireNonNull(javaxConnectionFactory);
     this.javaxConnectionFactory = javaxConnectionFactory;
   }
 
