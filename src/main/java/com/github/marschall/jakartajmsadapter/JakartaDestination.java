@@ -1,5 +1,7 @@
 package com.github.marschall.jakartajmsadapter;
 
+import java.util.Objects;
+
 import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
 
@@ -9,6 +11,7 @@ abstract sealed class JakartaDestination implements Destination, Wrapper
   private final javax.jms.Destination javaxDestination;
 
   JakartaDestination(javax.jms.Destination javaxDestination) {
+    Objects.requireNonNull(javaxDestination);
     this.javaxDestination = javaxDestination;
   }
 
@@ -23,16 +26,16 @@ abstract sealed class JakartaDestination implements Destination, Wrapper
   }
 
   static Destination fromJavax(javax.jms.Destination destination) throws JMSException {
-    if (destination instanceof javax.jms.Topic) {
-      if (destination instanceof javax.jms.TemporaryTopic) {
+    if (destination instanceof javax.jms.Topic topic) {
+      if (topic instanceof javax.jms.TemporaryTopic) {
         throw new JMSException("temporary topics not yet supported");
       }
-      return new JakartaTopic((javax.jms.Topic) destination);
-    } else if (destination instanceof javax.jms.Queue) {
-      if (destination instanceof javax.jms.TemporaryQueue) {
+      return new JakartaTopic(topic);
+    } else if (destination instanceof javax.jms.Queue queue) {
+      if (queue instanceof javax.jms.TemporaryQueue) {
         throw new JMSException("temporary queues not yet supported");
       }
-      return new JakartaQueue((javax.jms.Queue) destination);
+      return new JakartaQueue(queue);
     } else {
       throw new JMSException("unknown destination type: " + destination.getClass());
     }

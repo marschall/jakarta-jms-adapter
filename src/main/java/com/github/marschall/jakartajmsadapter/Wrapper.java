@@ -11,10 +11,10 @@ interface Wrapper {
   Object getJavaxObject();
 
   static <T> T unwrapObject(Object o, Class<T> clazz) throws JMSException {
-    if (!(o instanceof Wrapper)) {
+    if (!(o instanceof Wrapper w)) {
       throw new JMSException("not a wrapper: " + o.getClass());
     }
-    Object javaxObject = ((Wrapper) o).getJavaxObject();
+    Object javaxObject = w.getJavaxObject();
     if (!clazz.isInstance(javaxObject)) {
       throw new JMSException(o.getClass().getName() + " is not an instance of: " + clazz.getName());
     }

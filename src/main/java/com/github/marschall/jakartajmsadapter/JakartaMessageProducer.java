@@ -142,8 +142,9 @@ final class JakartaMessageProducer implements MessageProducer {
 
   @Override
   public void send(Message message) throws JMSException {
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
     try {
-      this.javaxMessageProducer.send(Wrapper.unwrapObject(message, javax.jms.Message.class));
+      this.javaxMessageProducer.send(javaxMessage);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -151,8 +152,9 @@ final class JakartaMessageProducer implements MessageProducer {
 
   @Override
   public void send(Message message, int deliveryMode, int priority, long timeToLive) throws JMSException {
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
     try {
-      this.javaxMessageProducer.send(Wrapper.unwrapObject(message, javax.jms.Message.class), deliveryMode, priority, timeToLive);
+      this.javaxMessageProducer.send(javaxMessage, deliveryMode, priority, timeToLive);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -160,9 +162,10 @@ final class JakartaMessageProducer implements MessageProducer {
 
   @Override
   public void send(Destination destination, Message message) throws JMSException {
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
+    javax.jms.Destination javaxDestination = Wrapper.unwrapObject(destination, javax.jms.Destination.class);
     try {
-      this.javaxMessageProducer.send(Wrapper.unwrapObject(destination, javax.jms.Destination.class),
-              Wrapper.unwrapObject(message, javax.jms.Message.class));
+      this.javaxMessageProducer.send(javaxDestination, javaxMessage);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -170,42 +173,61 @@ final class JakartaMessageProducer implements MessageProducer {
 
   @Override
   public void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive) throws JMSException {
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
+    javax.jms.Destination javaxDestination = Wrapper.unwrapObject(destination, javax.jms.Destination.class);
     try {
-      this.javaxMessageProducer.send(Wrapper.unwrapObject(destination, javax.jms.Destination.class),
-              Wrapper.unwrapObject(message, javax.jms.Message.class), deliveryMode, priority, timeToLive);
+      this.javaxMessageProducer.send(javaxDestination, javaxMessage, deliveryMode, priority, timeToLive);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
   }
 
   @Override
-  public void send(Message message, CompletionListener completionListener)
-          throws JMSException {
-    // TODO Auto-generated method stub
+  public void send(Message message, CompletionListener completionListener) throws JMSException {
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
+    javax.jms.CompletionListener javaxCompletionListener = new JavaxCompletionListener(completionListener);
+    try {
+      this.javaxMessageProducer.send(javaxMessage, javaxCompletionListener);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
 
   }
 
   @Override
-  public void send(Message message, int deliveryMode, int priority,
-          long timeToLive, CompletionListener completionListener)
-          throws JMSException {
-    // TODO Auto-generated method stub
-
+  public void send(Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener) throws JMSException {
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
+    javax.jms.CompletionListener javaxCompletionListener = new JavaxCompletionListener(completionListener);
+    try {
+      this.javaxMessageProducer.send(javaxMessage, deliveryMode, priority, timeToLive, javaxCompletionListener);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public void send(Destination destination, Message message,
-          CompletionListener completionListener) throws JMSException {
-    // TODO Auto-generated method stub
-
+  public void send(Destination destination, Message message, CompletionListener completionListener) throws JMSException {
+    javax.jms.Destination javaxDestination = Wrapper.unwrapObject(destination, javax.jms.Destination.class);
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
+    javax.jms.CompletionListener javaxCompletionListener = new JavaxCompletionListener(completionListener);
+    try {
+      this.javaxMessageProducer.send(javaxDestination, javaxMessage, javaxCompletionListener);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public void send(Destination destination, Message message, int deliveryMode,
-          int priority, long timeToLive, CompletionListener completionListener)
+  public void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener)
           throws JMSException {
-    // TODO Auto-generated method stub
-
+    javax.jms.Destination javaxDestination = Wrapper.unwrapObject(destination, javax.jms.Destination.class);
+    javax.jms.Message javaxMessage = Wrapper.unwrapObject(message, javax.jms.Message.class);
+    javax.jms.CompletionListener javaxCompletionListener = new JavaxCompletionListener(completionListener);
+    try {
+      this.javaxMessageProducer.send(javaxDestination, javaxMessage, deliveryMode, priority, timeToLive, javaxCompletionListener);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
 

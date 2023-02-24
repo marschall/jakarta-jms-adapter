@@ -1,6 +1,7 @@
 package com.github.marschall.jakartajmsadapter;
 
 import java.util.Enumeration;
+import java.util.Objects;
 
 import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
@@ -12,6 +13,7 @@ sealed class JakartaMessage implements Message, Wrapper
   private final javax.jms.Message javaxMessage;
 
   JakartaMessage(javax.jms.Message javaxMessage) {
+    Objects.requireNonNull(javaxMessage);
     this.javaxMessage = javaxMessage;
   }
 
@@ -461,6 +463,22 @@ sealed class JakartaMessage implements Message, Wrapper
   @Override
   public Object getJavaxObject() {
     return this.javaxMessage;
+  }
+
+  static Message fromJavax(javax.jms.Message message) throws JMSException {
+    if (message instanceof javax.jms.BytesMessage bytesMessage) {
+      return new JakartaBytesMessage(bytesMessage);
+    } else if (message instanceof javax.jms.MapMessage mapMessage) {
+      return new JakartaMapMessage(mapMessage);
+    } else if (message instanceof javax.jms.ObjectMessage objectMessage) {
+      return new JakartaObjectMessage(objectMessage);
+    } else if (message instanceof javax.jms.StreamMessage streamMessage) {
+      return new JakartaStreamMessage(streamMessage);
+    } else if (message instanceof javax.jms.TextMessage textMessage) {
+      return new JakartaTextMessage(textMessage);
+    } else {
+      return new JakartaMessage(message);
+    }
   }
 
 }
