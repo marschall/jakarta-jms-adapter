@@ -24,6 +24,7 @@ import jakarta.jms.TopicSubscriber;
 final class JakartaSession implements Session {
 
   private final javax.jms.Session javaxSession;
+  private MessageListener listener;
 
   JakartaSession(javax.jms.Session javaxSession) {
     this.javaxSession = javaxSession;
@@ -157,14 +158,23 @@ final class JakartaSession implements Session {
 
   @Override
   public MessageListener getMessageListener() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxSession.getMessageListener();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
+    return this.listener;
   }
 
   @Override
   public void setMessageListener(MessageListener listener) throws JMSException {
-    // TODO Auto-generated method stub
-
+    this.listener = listener;
+    JavaxMessageListener javaxListener = listener != null ? new JavaxMessageListener(listener) : null;
+    try {
+      this.javaxSession.setMessageListener(javaxListener);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override

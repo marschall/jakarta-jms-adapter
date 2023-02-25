@@ -9,6 +9,7 @@ final class JMSExceptionUtil {
   }
 
   static JMSException adaptException(javax.jms.JMSException e) {
+    // TODO more exceptions
     return new JMSException(e.getMessage(), e.getErrorCode(), e);
   }
 

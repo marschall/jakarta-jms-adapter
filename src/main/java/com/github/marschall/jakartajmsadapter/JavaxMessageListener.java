@@ -1,7 +1,8 @@
 package com.github.marschall.jakartajmsadapter;
 
-import javax.jms.Message;
+import java.util.Objects;
 
+import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 final class JavaxMessageListener implements javax.jms.MessageListener {
@@ -9,15 +10,14 @@ final class JavaxMessageListener implements javax.jms.MessageListener {
   private final MessageListener jakartaMessageListener;
 
   JavaxMessageListener(MessageListener jakartaMessageListener) {
+    Objects.requireNonNull(jakartaMessageListener);
     this.jakartaMessageListener = jakartaMessageListener;
   }
 
   @Override
-  public void onMessage(Message message) {
-    // TODO Auto-generated method stub
-
+  public void onMessage(javax.jms.Message message) {
+    Message jakartaMessage = JakartaMessage.fromJavax(message);
+    this.jakartaMessageListener.onMessage(jakartaMessage);
   }
-
-
 
 }

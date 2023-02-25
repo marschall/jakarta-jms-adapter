@@ -8,6 +8,7 @@ import jakarta.jms.MessageListener;
 final class JakartaMessageConsumer implements MessageConsumer {
 
   private final javax.jms.MessageConsumer javaxMessageConsumer;
+  private MessageListener listener;
 
   JakartaMessageConsumer(javax.jms.MessageConsumer javaxMessageConsumer) {
     this.javaxMessageConsumer = javaxMessageConsumer;
@@ -24,14 +25,23 @@ final class JakartaMessageConsumer implements MessageConsumer {
 
   @Override
   public MessageListener getMessageListener() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxMessageConsumer.getMessageListener();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
+    return this.listener;
   }
 
   @Override
   public void setMessageListener(MessageListener listener) throws JMSException {
-    // TODO Auto-generated method stub
-
+    this.listener = listener;
+    JavaxMessageListener javaxListener = listener != null ? new JavaxMessageListener(listener) : null;
+    try {
+      this.javaxMessageConsumer.setMessageListener(javaxListener);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
