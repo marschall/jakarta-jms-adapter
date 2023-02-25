@@ -31,32 +31,47 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public JMSContext createContext(int sessionMode) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaJMSContext(this.javaxJMSContext.createContext(sessionMode));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public JMSProducer createProducer() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaJMSProducer(this.javaxJMSContext.createProducer());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public String getClientID() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxJMSContext.getClientID();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void setClientID(String clientID) {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.setClientID(clientID);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public ConnectionMetaData getMetaData() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaConnectionMetaData(this.javaxJMSContext.getMetaData());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -82,26 +97,39 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public void start() {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.start();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void stop() {
-    // TODO Auto-generated method stub
+    try {
+      this.javaxJMSContext.stop();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
 
   }
 
   @Override
   public void setAutoStart(boolean autoStart) {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.setAutoStart(autoStart);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public boolean getAutoStart() {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return this.javaxJMSContext.getAutoStart();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -160,32 +188,47 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public boolean getTransacted() {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return this.javaxJMSContext.getTransacted();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public int getSessionMode() {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxJMSContext.getSessionMode();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void commit() {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.commit();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void rollback() {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.rollback();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void recover() {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.recover();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -286,14 +329,20 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public void unsubscribe(String name) {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.unsubscribe(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void acknowledge() {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.acknowledge();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
 }

@@ -17,7 +17,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public boolean getBoolean(String name) throws JMSException {
     try {
-      return javaxMessage.getBoolean(name);
+      return this.javaxMessage.getBoolean(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -26,7 +26,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public byte getByte(String name) throws JMSException {
     try {
-      return javaxMessage.getByte(name);
+      return this.javaxMessage.getByte(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -35,7 +35,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public short getShort(String name) throws JMSException {
     try {
-      return javaxMessage.getShort(name);
+      return this.javaxMessage.getShort(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -44,7 +44,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public char getChar(String name) throws JMSException {
     try {
-      return javaxMessage.getChar(name);
+      return this.javaxMessage.getChar(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -53,7 +53,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public int getInt(String name) throws JMSException {
     try {
-      return javaxMessage.getInt(name);
+      return this.javaxMessage.getInt(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -62,7 +62,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public long getLong(String name) throws JMSException {
     try {
-      return javaxMessage.getLong(name);
+      return this.javaxMessage.getLong(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -71,7 +71,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public float getFloat(String name) throws JMSException {
     try {
-      return javaxMessage.getFloat(name);
+      return this.javaxMessage.getFloat(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -80,7 +80,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public double getDouble(String name) throws JMSException {
     try {
-      return javaxMessage.getDouble(name);
+      return this.javaxMessage.getDouble(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -89,7 +89,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public String getString(String name) throws JMSException {
     try {
-      return javaxMessage.getString(name);
+      return this.javaxMessage.getString(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -98,7 +98,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public byte[] getBytes(String name) throws JMSException {
     try {
-      return javaxMessage.getBytes(name);
+      return this.javaxMessage.getBytes(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -107,17 +107,16 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public Object getObject(String name) throws JMSException {
     try {
-      return javaxMessage.getObject(name);
+      return this.javaxMessage.getObject(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
   }
 
   @Override
-  @SuppressWarnings("rawtypes")
-  public Enumeration getMapNames() throws JMSException {
+  public @SuppressWarnings("rawtypes") Enumeration getMapNames() throws JMSException {
     try {
-      return javaxMessage.getMapNames();
+      return this.javaxMessage.getMapNames();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -126,7 +125,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setBoolean(String name, boolean value) throws JMSException {
     try {
-      javaxMessage.setBoolean(name, value);
+      this.javaxMessage.setBoolean(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -135,7 +134,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setByte(String name, byte value) throws JMSException {
     try {
-      javaxMessage.setByte(name, value);
+      this.javaxMessage.setByte(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -144,7 +143,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setShort(String name, short value) throws JMSException {
     try {
-      javaxMessage.setShort(name, value);
+      this.javaxMessage.setShort(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -153,7 +152,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setChar(String name, char value) throws JMSException {
     try {
-      javaxMessage.setChar(name, value);
+      this.javaxMessage.setChar(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -162,7 +161,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setInt(String name, int value) throws JMSException {
     try {
-      javaxMessage.setInt(name, value);
+      this.javaxMessage.setInt(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -171,7 +170,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setLong(String name, long value) throws JMSException {
     try {
-      javaxMessage.setLong(name, value);
+      this.javaxMessage.setLong(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -180,7 +179,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setFloat(String name, float value) throws JMSException {
     try {
-      javaxMessage.setFloat(name, value);
+      this.javaxMessage.setFloat(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -189,7 +188,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setDouble(String name, double value) throws JMSException {
     try {
-      javaxMessage.setDouble(name, value);
+      this.javaxMessage.setDouble(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -198,7 +197,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setString(String name, String value) throws JMSException {
     try {
-      javaxMessage.setString(name, value);
+      this.javaxMessage.setString(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -207,7 +206,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setBytes(String name, byte[] value) throws JMSException {
     try {
-      javaxMessage.setBytes(name, value);
+      this.javaxMessage.setBytes(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -216,7 +215,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setBytes(String name, byte[] value, int offset, int length) throws JMSException {
     try {
-      javaxMessage.setBytes(name, value, offset, length);
+      this.javaxMessage.setBytes(name, value, offset, length);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -225,7 +224,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public void setObject(String name, Object value) throws JMSException {
     try {
-      javaxMessage.setObject(name, value);
+      this.javaxMessage.setObject(name, value);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -234,7 +233,7 @@ final class JakartaMapMessage extends JakartaMessage implements MapMessage {
   @Override
   public boolean itemExists(String name) throws JMSException {
     try {
-      return javaxMessage.itemExists(name);
+      return this.javaxMessage.itemExists(name);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }

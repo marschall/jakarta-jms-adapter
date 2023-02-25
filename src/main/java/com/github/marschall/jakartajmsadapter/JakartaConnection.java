@@ -13,7 +13,9 @@ import jakarta.jms.Topic;
 final class JakartaConnection implements Connection {
 
   private final javax.jms.Connection javaxConnection;
-  private ExceptionListener listener;
+
+  // Connections support concurrent use
+  private volatile ExceptionListener listener;
 
   JakartaConnection(javax.jms.Connection javaxConnection) {
     this.javaxConnection = javaxConnection;
@@ -66,8 +68,11 @@ final class JakartaConnection implements Connection {
 
   @Override
   public ConnectionMetaData getMetaData() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaConnectionMetaData(this.javaxConnection.getMetaData());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override

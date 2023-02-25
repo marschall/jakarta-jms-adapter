@@ -333,8 +333,7 @@ sealed class JakartaMessage implements Message, Wrapper
   }
 
   @Override
-  @SuppressWarnings("rawtypes")
-  public Enumeration getPropertyNames() throws JMSException {
+  public @SuppressWarnings("rawtypes") Enumeration getPropertyNames() throws JMSException {
     try {
       return this.javaxMessage.getPropertyNames();
     } catch (javax.jms.JMSException e) {
