@@ -39,27 +39,38 @@ public final class JakartaConnectionFactory implements ConnectionFactory {
 
   @Override
   public JMSContext createContext() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaJMSContext(this.javaxConnectionFactory.createContext());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public JMSContext createContext(String userName, String password) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaJMSContext(this.javaxConnectionFactory.createContext(userName, password));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public JMSContext createContext(String userName, String password,
-          int sessionMode) {
-    // TODO Auto-generated method stub
-    return null;
+  public JMSContext createContext(String userName, String password, int sessionMode) {
+    try {
+      return new JakartaJMSContext(this.javaxConnectionFactory.createContext(userName, password, sessionMode));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public JMSContext createContext(int sessionMode) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaJMSContext(this.javaxConnectionFactory.createContext(sessionMode));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
 }

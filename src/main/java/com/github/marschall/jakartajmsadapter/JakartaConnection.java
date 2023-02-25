@@ -13,6 +13,7 @@ import jakarta.jms.Topic;
 final class JakartaConnection implements Connection {
 
   private final javax.jms.Connection javaxConnection;
+  private ExceptionListener listener;
 
   JakartaConnection(javax.jms.Connection javaxConnection) {
     this.javaxConnection = javaxConnection;
@@ -71,14 +72,23 @@ final class JakartaConnection implements Connection {
 
   @Override
   public ExceptionListener getExceptionListener() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxConnection.getExceptionListener();
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
+    return this.listener;
   }
 
   @Override
   public void setExceptionListener(ExceptionListener listener) throws JMSException {
-    // TODO Auto-generated method stub
-
+    this.listener = listener;
+    JavaxExceptionListener javaxListener = listener != null ? new JavaxExceptionListener(listener) : null;
+    try {
+      this.javaxConnection.setExceptionListener(javaxListener);
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override

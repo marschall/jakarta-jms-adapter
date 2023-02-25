@@ -23,6 +23,7 @@ import jakarta.jms.Topic;
 final class JakartaJMSContext implements JMSContext {
 
   private final javax.jms.JMSContext javaxJMSContext;
+  private ExceptionListener listener;
 
   JakartaJMSContext(javax.jms.JMSContext javaxJMSContext) {
     this.javaxJMSContext = javaxJMSContext;
@@ -60,14 +61,23 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public ExceptionListener getExceptionListener() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxJMSContext.getExceptionListener();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this.listener;
   }
 
   @Override
   public void setExceptionListener(ExceptionListener listener) {
-    // TODO Auto-generated method stub
-
+    this.listener = listener;
+    JavaxExceptionListener javaxListener = listener != null ? new JavaxExceptionListener(listener) : null;
+    try {
+      this.javaxJMSContext.setExceptionListener(javaxListener);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
