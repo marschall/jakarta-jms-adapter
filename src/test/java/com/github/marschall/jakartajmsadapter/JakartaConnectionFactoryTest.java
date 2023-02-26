@@ -21,7 +21,12 @@ public class JakartaConnectionFactoryTest {
   private static final String QUEUE_NAME = "queue://junit";
 
   @Rule
-  public EmbeddedActiveMQBroker broker = new EmbeddedActiveMQBroker();
+  public EmbeddedActiveMQBroker broker;
+
+  public JakartaConnectionFactoryTest() {
+    this.broker = new EmbeddedActiveMQBroker();
+    this.broker.getBrokerService().setUseJmx(false);
+  }
 
   private JmsOperations jmsTemplate;
 
