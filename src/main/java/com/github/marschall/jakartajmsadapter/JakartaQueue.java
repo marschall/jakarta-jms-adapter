@@ -3,9 +3,10 @@ package com.github.marschall.jakartajmsadapter;
 import jakarta.jms.JMSException;
 import jakarta.jms.Queue;
 
-final class JakartaQueue extends JakartaDestination implements Queue {
+sealed class JakartaQueue extends JakartaDestination implements Queue
+  permits JakartaTemporaryQueue {
 
-  private javax.jms.Queue javaxQueue;
+  private final javax.jms.Queue javaxQueue;
 
   JakartaQueue(javax.jms.Queue javaxQueue) {
     super(javaxQueue);

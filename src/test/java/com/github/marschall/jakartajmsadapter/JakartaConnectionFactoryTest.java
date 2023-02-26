@@ -42,6 +42,7 @@ public class JakartaConnectionFactoryTest {
     this.jmsTemplate.send(QUEUE_NAME, session -> session.createTextMessage("hello Jakarta"));
     List<String> textMessages = this.jmsTemplate.browse(QUEUE_NAME, (session, browser) -> {
       List<String> messages = new ArrayList<>(1);
+      @SuppressWarnings("rawtypes")
       Enumeration enumeration = browser.getEnumeration();
       while (enumeration.hasMoreElements()) {
         Object nextElement = enumeration.nextElement();

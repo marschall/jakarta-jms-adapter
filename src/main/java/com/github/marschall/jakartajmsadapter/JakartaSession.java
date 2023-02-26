@@ -334,14 +334,20 @@ final class JakartaSession implements Session {
 
   @Override
   public TemporaryQueue createTemporaryQueue() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTemporaryQueue(this.javaxSession.createTemporaryQueue());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public TemporaryTopic createTemporaryTopic() throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTemporaryTopic(this.javaxSession.createTemporaryTopic());
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override

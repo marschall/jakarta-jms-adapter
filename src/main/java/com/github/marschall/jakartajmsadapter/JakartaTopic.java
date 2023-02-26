@@ -3,7 +3,8 @@ package com.github.marschall.jakartajmsadapter;
 import jakarta.jms.JMSException;
 import jakarta.jms.Topic;
 
-final class JakartaTopic extends JakartaDestination implements Topic {
+sealed class JakartaTopic extends JakartaDestination implements Topic
+  permits JakartaTemporaryTopic {
 
   private final javax.jms.Topic javaxTopic;
 
@@ -15,7 +16,7 @@ final class JakartaTopic extends JakartaDestination implements Topic {
   @Override
   public String getTopicName() throws JMSException {
     try {
-      return javaxTopic.getTopicName();
+      return this.javaxTopic.getTopicName();
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }

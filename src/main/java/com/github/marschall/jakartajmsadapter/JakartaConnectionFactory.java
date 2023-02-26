@@ -14,6 +14,12 @@ public final class JakartaConnectionFactory implements ConnectionFactory {
 
   private final javax.jms.ConnectionFactory javaxConnectionFactory;
 
+  /**
+   * Constructs a new {@link JakartaConnectionFactory}
+   *
+   * @param javaxConnectionFactory the javax connection factory to adapt, not {@code null}
+   * @throws NullPointerException if {@code javaxConnectionFactory} is {@code null}
+   */
   public JakartaConnectionFactory(javax.jms.ConnectionFactory javaxConnectionFactory) {
     Objects.requireNonNull(javaxConnectionFactory);
     this.javaxConnectionFactory = javaxConnectionFactory;

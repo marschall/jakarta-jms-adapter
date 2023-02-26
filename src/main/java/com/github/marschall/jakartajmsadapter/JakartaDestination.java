@@ -27,13 +27,13 @@ abstract sealed class JakartaDestination implements Destination, Wrapper
 
   static Destination fromJavax(javax.jms.Destination destination) throws JMSException {
     if (destination instanceof javax.jms.Topic topic) {
-      if (topic instanceof javax.jms.TemporaryTopic) {
-        throw new JMSException("temporary topics not yet supported");
+      if (topic instanceof javax.jms.TemporaryTopic temporaryTopic) {
+        return new JakartaTemporaryTopic(temporaryTopic);
       }
       return new JakartaTopic(topic);
     } else if (destination instanceof javax.jms.Queue queue) {
-      if (queue instanceof javax.jms.TemporaryQueue) {
-        throw new JMSException("temporary queues not yet supported");
+      if (queue instanceof javax.jms.TemporaryQueue temporaryQueue) {
+        return new JakartaTemporaryQueue(temporaryQueue);
       }
       return new JakartaQueue(queue);
     } else {
