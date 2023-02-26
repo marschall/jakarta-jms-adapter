@@ -124,31 +124,51 @@ final class JakartaConnection implements Connection {
   }
 
   @Override
-  public ConnectionConsumer createConnectionConsumer(Destination destination, String messageSelector,
-      ServerSessionPool sessionPool, int maxMessages) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+  public ConnectionConsumer createConnectionConsumer(Destination destination, String messageSelector, ServerSessionPool sessionPool, int maxMessages)
+          throws JMSException {
+    javax.jms.Destination javaxDestination = Wrapper.unwrapObject(destination, javax.jms.Destination.class);
+    javax.jms.ServerSessionPool javaxSessionPool = Wrapper.unwrapObject(sessionPool, javax.jms.ServerSessionPool.class);
+    try {
+      return new JakartaConnectionConsumer(this.javaxConnection.createConnectionConsumer(javaxDestination, messageSelector, javaxSessionPool, maxMessages));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public ConnectionConsumer createSharedConnectionConsumer(Topic topic, String subscriptionName, String messageSelector,
-      ServerSessionPool sessionPool, int maxMessages) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+  public ConnectionConsumer createSharedConnectionConsumer(Topic topic, String subscriptionName, String messageSelector, ServerSessionPool sessionPool, int maxMessages)
+          throws JMSException {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    javax.jms.ServerSessionPool javaxSessionPool = Wrapper.unwrapObject(sessionPool, javax.jms.ServerSessionPool.class);
+    try {
+      return new JakartaConnectionConsumer(this.javaxConnection.createSharedConnectionConsumer(javaxTopic, subscriptionName, messageSelector, javaxSessionPool, maxMessages));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public ConnectionConsumer createDurableConnectionConsumer(Topic topic, String subscriptionName,
-      String messageSelector, ServerSessionPool sessionPool, int maxMessages) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+  public ConnectionConsumer createDurableConnectionConsumer(Topic topic, String subscriptionName, String messageSelector, ServerSessionPool sessionPool, int maxMessages)
+          throws JMSException {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    javax.jms.ServerSessionPool javaxSessionPool = Wrapper.unwrapObject(sessionPool, javax.jms.ServerSessionPool.class);
+    try {
+      return new JakartaConnectionConsumer(this.javaxConnection.createDurableConnectionConsumer(javaxTopic, subscriptionName, messageSelector, javaxSessionPool, maxMessages));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public ConnectionConsumer createSharedDurableConnectionConsumer(Topic topic, String subscriptionName,
-      String messageSelector, ServerSessionPool sessionPool, int maxMessages) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+  public ConnectionConsumer createSharedDurableConnectionConsumer(Topic topic, String subscriptionName, String messageSelector, ServerSessionPool sessionPool, int maxMessages)
+          throws JMSException {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    javax.jms.ServerSessionPool javaxSessionPool = Wrapper.unwrapObject(sessionPool, javax.jms.ServerSessionPool.class);
+    try {
+      return new JakartaConnectionConsumer(this.javaxConnection.createSharedDurableConnectionConsumer(javaxTopic, subscriptionName, messageSelector, javaxSessionPool, maxMessages));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
 }
