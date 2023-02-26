@@ -261,15 +261,22 @@ final class JakartaSession implements Session {
 
   @Override
   public TopicSubscriber createDurableSubscriber(Topic topic, String name) throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaTopicSubscriber(this.javaxSession.createDurableSubscriber(javaxTopic, name));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public TopicSubscriber createDurableSubscriber(Topic topic, String name, String messageSelector, boolean noLocal)
-      throws JMSException {
-    // TODO Auto-generated method stub
-    return null;
+  public TopicSubscriber createDurableSubscriber(Topic topic, String name, String messageSelector, boolean noLocal) throws JMSException {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapObject(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaTopicSubscriber(this.javaxSession.createDurableSubscriber(javaxTopic, name, messageSelector, noLocal));
+    } catch (javax.jms.JMSException e) {
+      throw JMSExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
