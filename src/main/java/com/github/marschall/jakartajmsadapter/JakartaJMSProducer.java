@@ -7,7 +7,9 @@ import java.util.Set;
 
 import jakarta.jms.CompletionListener;
 import jakarta.jms.Destination;
+import jakarta.jms.JMSException;
 import jakarta.jms.JMSProducer;
+import jakarta.jms.JMSRuntimeException;
 import jakarta.jms.Message;
 
 final class JakartaJMSProducer implements JMSProducer {
@@ -57,8 +59,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public boolean getDisableMessageID() {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return this.javaxProducer.getDisableMessageID();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -69,8 +74,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public boolean getDisableMessageTimestamp() {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return this.javaxProducer.getDisableMessageTimestamp();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -81,8 +89,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public int getDeliveryMode() {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getDeliveryMode();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -93,8 +104,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public int getPriority() {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getPriority();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -105,8 +119,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public long getTimeToLive() {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getTimeToLive();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -117,8 +134,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public long getDeliveryDelay() {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getDeliveryDelay();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -199,68 +219,101 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public boolean propertyExists(String name) {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return this.javaxProducer.propertyExists(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public boolean getBooleanProperty(String name) {
-    // TODO Auto-generated method stub
-    return false;
+    try {
+      return this.javaxProducer.getBooleanProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public byte getByteProperty(String name) {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getByteProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public short getShortProperty(String name) {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getShortProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public int getIntProperty(String name) {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getIntProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public long getLongProperty(String name) {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getLongProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public float getFloatProperty(String name) {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getFloatProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public double getDoubleProperty(String name) {
-    // TODO Auto-generated method stub
-    return 0;
+    try {
+      return this.javaxProducer.getDoubleProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public String getStringProperty(String name) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxProducer.getStringProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Object getObjectProperty(String name) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxProducer.getObjectProperty(name);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Set<String> getPropertyNames() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxProducer.getPropertyNames();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -271,8 +324,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public byte[] getJMSCorrelationIDAsBytes() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxProducer.getJMSCorrelationIDAsBytes();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -283,8 +339,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public String getJMSCorrelationID() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxProducer.getJMSCorrelationID();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -295,8 +354,11 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public String getJMSType() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxProducer.getJMSType();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -307,8 +369,17 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public Destination getJMSReplyTo() {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination;
+    try {
+      javaxDestination = this.javaxProducer.getJMSReplyTo();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    try {
+      return JakartaDestination.fromJavax(javaxDestination);
+    } catch (JMSException e) {
+      throw new JMSRuntimeException("unknown destination type: " + javaxDestination.getClass());
+    }
   }
 
 }
