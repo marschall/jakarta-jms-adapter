@@ -1,13 +1,13 @@
 package com.github.marschall.jakartajmsadapter;
 
 import jakarta.jms.JMSConsumer;
-import jakarta.jms.JMSRuntimeException;
 import jakarta.jms.Message;
 import jakarta.jms.MessageListener;
 
 final class JakartaJMSConsumer implements JMSConsumer {
 
   private final javax.jms.JMSConsumer javaxConsumer;
+  private MessageListener listener;
 
   JakartaJMSConsumer(javax.jms.JMSConsumer javaxConsumer) {
     this.javaxConsumer = javaxConsumer;
@@ -23,15 +23,24 @@ final class JakartaJMSConsumer implements JMSConsumer {
   }
 
   @Override
-  public MessageListener getMessageListener() throws JMSRuntimeException {
-    // TODO Auto-generated method stub
-    return null;
+  public MessageListener getMessageListener() {
+    try {
+      this.javaxConsumer.getMessageListener();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this.listener;
   }
 
   @Override
-  public void setMessageListener(MessageListener listener) throws JMSRuntimeException {
-    // TODO Auto-generated method stub
-
+  public void setMessageListener(MessageListener listener) {
+    JavaxMessageListener javaxListener = listener != null ? new JavaxMessageListener(listener) : null;
+    try {
+      this.javaxConsumer.setMessageListener(javaxListener);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    this.listener = listener;
   }
 
   @Override
