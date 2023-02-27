@@ -465,7 +465,9 @@ sealed class JakartaMessage implements Message, Wrapper
   }
 
   static Message fromJavax(javax.jms.Message message) {
-    if (message instanceof javax.jms.BytesMessage bytesMessage) {
+    if (message == null) {
+      return null;
+    } else if (message instanceof javax.jms.BytesMessage bytesMessage) {
       return new JakartaBytesMessage(bytesMessage);
     } else if (message instanceof javax.jms.MapMessage mapMessage) {
       return new JakartaMapMessage(mapMessage);

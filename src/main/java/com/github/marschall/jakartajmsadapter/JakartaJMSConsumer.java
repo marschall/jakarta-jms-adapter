@@ -15,8 +15,11 @@ final class JakartaJMSConsumer implements JMSConsumer {
 
   @Override
   public String getMessageSelector() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxConsumer.getMessageSelector();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -33,44 +36,65 @@ final class JakartaJMSConsumer implements JMSConsumer {
 
   @Override
   public Message receive() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return JakartaMessage.fromJavax(this.javaxConsumer.receive());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Message receive(long timeout) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return JakartaMessage.fromJavax(this.javaxConsumer.receive(timeout));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Message receiveNoWait() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return JakartaMessage.fromJavax(this.javaxConsumer.receiveNoWait());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public void close() {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxConsumer.close();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public <T> T receiveBody(Class<T> c) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxConsumer.receiveBody(c);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public <T> T receiveBody(Class<T> c, long timeout) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxConsumer.receiveBody(c, timeout);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public <T> T receiveBodyNoWait(Class<T> c) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return this.javaxConsumer.receiveBodyNoWait(c);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
 }
