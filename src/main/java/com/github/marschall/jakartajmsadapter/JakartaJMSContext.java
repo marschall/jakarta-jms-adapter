@@ -86,13 +86,13 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public void setExceptionListener(ExceptionListener listener) {
-    this.listener = listener;
     JavaxExceptionListener javaxListener = listener != null ? new JavaxExceptionListener(listener) : null;
     try {
       this.javaxJMSContext.setExceptionListener(javaxListener);
     } catch (javax.jms.JMSRuntimeException e) {
       throw JMSRuntimeExceptionUtil.adaptException(e);
     }
+    this.listener = listener;
   }
 
   @Override

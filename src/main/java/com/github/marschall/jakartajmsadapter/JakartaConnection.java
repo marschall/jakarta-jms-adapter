@@ -87,13 +87,13 @@ final class JakartaConnection implements Connection {
 
   @Override
   public void setExceptionListener(ExceptionListener listener) throws JMSException {
-    this.listener = listener;
     JavaxExceptionListener javaxListener = listener != null ? new JavaxExceptionListener(listener) : null;
     try {
       this.javaxConnection.setExceptionListener(javaxListener);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
+    this.listener = listener;
   }
 
   @Override

@@ -15,6 +15,7 @@ import jakarta.jms.Message;
 final class JakartaJMSProducer implements JMSProducer {
 
   private final javax.jms.JMSProducer javaxProducer;
+  private CompletionListener async;
 
   JakartaJMSProducer(javax.jms.JMSProducer javaxProducer) {
     Objects.requireNonNull(javaxProducer);
@@ -23,38 +24,68 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer send(Destination destination, Message message) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    javax.jms.Message javaxMessage = Wrapper.unwrapUnchecked(message, javax.jms.Message.class);
+    try {
+      this.javaxProducer.send(javaxDestination, javaxMessage);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer send(Destination destination, String body) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    try {
+      this.javaxProducer.send(javaxDestination, body);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer send(Destination destination, Map<String, Object> body) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    try {
+      this.javaxProducer.send(javaxDestination, body);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer send(Destination destination, byte[] body) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    try {
+      this.javaxProducer.send(javaxDestination, body);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer send(Destination destination, Serializable body) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    try {
+      this.javaxProducer.send(javaxDestination, body);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setDisableMessageID(boolean value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setDisableMessageID(value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -68,8 +99,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setDisableMessageTimestamp(boolean value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setDisableMessageTimestamp(value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -83,8 +118,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setDeliveryMode(int deliveryMode) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setDeliveryMode(deliveryMode);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -98,8 +137,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setPriority(int priority) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setPriority(priority);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -113,8 +156,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setTimeToLive(long timeToLive) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setTimeToLive(timeToLive);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -128,8 +175,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setDeliveryDelay(long deliveryDelay) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setDeliveryDelay(deliveryDelay);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -143,68 +194,119 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setAsync(CompletionListener completionListener) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.CompletionListener javaxCompletionListener;
+    if (completionListener != null) {
+      javaxCompletionListener = new JavaxCompletionListener(completionListener);
+    } else {
+      javaxCompletionListener = null;
+    }
+    try {
+      this.javaxProducer.setAsync(javaxCompletionListener);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    async = completionListener;
+    return this;
   }
 
   @Override
   public CompletionListener getAsync() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.getAsync();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this.async;
   }
 
   @Override
   public JMSProducer setProperty(String name, boolean value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, byte value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, short value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, int value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, long value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, float value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, double value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, String value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
   public JMSProducer setProperty(String name, Object value) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setProperty(name, value);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -318,8 +420,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setJMSCorrelationIDAsBytes(byte[] correlationID) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setJMSCorrelationIDAsBytes(correlationID);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -333,8 +439,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setJMSCorrelationID(String correlationID) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setJMSCorrelationID(correlationID);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -348,8 +458,12 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setJMSType(String type) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      this.javaxProducer.setJMSType(type);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
@@ -363,8 +477,13 @@ final class JakartaJMSProducer implements JMSProducer {
 
   @Override
   public JMSProducer setJMSReplyTo(Destination replyTo) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(replyTo, javax.jms.Destination.class);
+    try {
+      this.javaxProducer.setJMSReplyTo(javaxDestination);
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
+    return this;
   }
 
   @Override
