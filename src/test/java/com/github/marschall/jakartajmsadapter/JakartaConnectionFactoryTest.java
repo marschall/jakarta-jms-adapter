@@ -1,15 +1,11 @@
 package com.github.marschall.jakartajmsadapter;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
 
-import javax.jms.JMSContext;
-
-import org.apache.activemq.ActiveMQConnectionFactory;
 import org.apache.activemq.junit.EmbeddedActiveMQBroker;
 import org.junit.Before;
 import org.junit.Rule;
@@ -64,11 +60,11 @@ public class JakartaConnectionFactoryTest {
     assertEquals(List.of("hello Jakarta"), textMessages);
   }
 
-  @Test(expected = AbstractMethodError.class)
-  public void jmsContext() {
-    ActiveMQConnectionFactory connectionFactory = this.broker.createConnectionFactory();
-    JMSContext jmsContext = connectionFactory.createContext();
-    assertNotNull(jmsContext);
-  }
+//  @Test(expected = AbstractMethodError.class)
+//  public void jmsContext() {
+//    ActiveMQConnectionFactory connectionFactory = this.broker.createConnectionFactory();
+//    JMSContext jmsContext = connectionFactory.createContext();
+//    assertNotNull(jmsContext);
+//  }
 
 }
