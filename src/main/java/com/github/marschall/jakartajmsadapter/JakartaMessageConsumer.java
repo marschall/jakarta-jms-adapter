@@ -36,13 +36,13 @@ sealed class JakartaMessageConsumer implements MessageConsumer
 
   @Override
   public void setMessageListener(MessageListener listener) throws JMSException {
-    this.listener = listener;
     JavaxMessageListener javaxListener = listener != null ? new JavaxMessageListener(listener) : null;
     try {
       this.javaxMessageConsumer.setMessageListener(javaxListener);
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
+    this.listener = listener;
   }
 
   @Override

@@ -134,56 +134,83 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public void close() {
-    // TODO Auto-generated method stub
-
+    try {
+      this.javaxJMSContext.close();
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public BytesMessage createBytesMessage() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaBytesMessage(this.javaxJMSContext.createBytesMessage());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public MapMessage createMapMessage() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaMapMessage(this.javaxJMSContext.createMapMessage());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Message createMessage() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaMessage(this.javaxJMSContext.createMessage());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public ObjectMessage createObjectMessage() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaObjectMessage(this.javaxJMSContext.createObjectMessage());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public ObjectMessage createObjectMessage(Serializable object) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaObjectMessage(this.javaxJMSContext.createObjectMessage(object));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public StreamMessage createStreamMessage() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaStreamMessage(this.javaxJMSContext.createStreamMessage());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public TextMessage createTextMessage() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTextMessage(this.javaxJMSContext.createTextMessage());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public TextMessage createTextMessage(String text) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTextMessage(this.javaxJMSContext.createTextMessage(text));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
@@ -233,98 +260,148 @@ final class JakartaJMSContext implements JMSContext {
 
   @Override
   public JMSConsumer createConsumer(Destination destination) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createConsumer(javaxDestination));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public JMSConsumer createConsumer(Destination destination,
-          String messageSelector) {
-    // TODO Auto-generated method stub
-    return null;
+  public JMSConsumer createConsumer(Destination destination, String messageSelector) {
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createConsumer(javaxDestination, messageSelector));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public JMSConsumer createConsumer(Destination destination,
-          String messageSelector, boolean noLocal) {
-    // TODO Auto-generated method stub
-    return null;
+  public JMSConsumer createConsumer(Destination destination, String messageSelector, boolean noLocal) {
+    javax.jms.Destination javaxDestination = Wrapper.unwrapUnchecked(destination, javax.jms.Destination.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createConsumer(javaxDestination, messageSelector, noLocal));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Queue createQueue(String queueName) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaQueue(this.javaxJMSContext.createQueue(queueName));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public Topic createTopic(String topicName) {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTopic(this.javaxJMSContext.createTopic(topicName));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public JMSConsumer createDurableConsumer(Topic topic, String name) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Topic javaxTopic = Wrapper.unwrapUnchecked(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createDurableConsumer(javaxTopic, name));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public JMSConsumer createDurableConsumer(Topic topic, String name,
-          String messageSelector, boolean noLocal) {
-    // TODO Auto-generated method stub
-    return null;
+  public JMSConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal) {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapUnchecked(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createDurableConsumer(javaxTopic, name, messageSelector, noLocal));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public JMSConsumer createSharedDurableConsumer(Topic topic, String name) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Topic javaxTopic = Wrapper.unwrapUnchecked(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createSharedDurableConsumer(javaxTopic, name));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public JMSConsumer createSharedDurableConsumer(Topic topic, String name,
-          String messageSelector) {
-    // TODO Auto-generated method stub
-    return null;
+  public JMSConsumer createSharedDurableConsumer(Topic topic, String name, String messageSelector) {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapUnchecked(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createSharedDurableConsumer(javaxTopic, name, messageSelector));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public JMSConsumer createSharedConsumer(Topic topic,
-          String sharedSubscriptionName) {
-    // TODO Auto-generated method stub
-    return null;
+  public JMSConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName) {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapUnchecked(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createSharedConsumer(javaxTopic, sharedSubscriptionName));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
-  public JMSConsumer createSharedConsumer(Topic topic,
-          String sharedSubscriptionName, String messageSelector) {
-    // TODO Auto-generated method stub
-    return null;
+  public JMSConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, String messageSelector) {
+    javax.jms.Topic javaxTopic = Wrapper.unwrapUnchecked(topic, javax.jms.Topic.class);
+    try {
+      return new JakartaJMSConsumer(this.javaxJMSContext.createSharedConsumer(javaxTopic, sharedSubscriptionName, messageSelector));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public QueueBrowser createBrowser(Queue queue) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Queue javaxQueue = Wrapper.unwrapUnchecked(queue, javax.jms.Queue.class);
+    try {
+      return new JakartaQueueBrowser(this.javaxJMSContext.createBrowser(javaxQueue));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public QueueBrowser createBrowser(Queue queue, String messageSelector) {
-    // TODO Auto-generated method stub
-    return null;
+    javax.jms.Queue javaxQueue = Wrapper.unwrapUnchecked(queue, javax.jms.Queue.class);
+    try {
+      return new JakartaQueueBrowser(this.javaxJMSContext.createBrowser(javaxQueue, messageSelector));
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public TemporaryQueue createTemporaryQueue() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTemporaryQueue(this.javaxJMSContext.createTemporaryQueue());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
   public TemporaryTopic createTemporaryTopic() {
-    // TODO Auto-generated method stub
-    return null;
+    try {
+      return new JakartaTemporaryTopic(this.javaxJMSContext.createTemporaryTopic());
+    } catch (javax.jms.JMSRuntimeException e) {
+      throw JMSRuntimeExceptionUtil.adaptException(e);
+    }
   }
 
   @Override
