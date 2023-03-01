@@ -6,8 +6,11 @@ import jakarta.jms.JMSRuntimeException;
 /**
  * Wraps a javax.jms object and adapts it to a jakarta.jms object.
  */
-interface Wrapper {
+public interface Wrapper {
 
+  /**
+   * {@return the underlying javax.jms object}
+   */
   Object getJavaxObject();
 
   static <T> T unwrapObject(Object o, Class<T> clazz) throws JMSException {
@@ -20,7 +23,7 @@ interface Wrapper {
     }
     return clazz.cast(javaxObject);
   }
-  
+
   static <T> T unwrapUnchecked(Object o, Class<T> clazz) throws JMSRuntimeException {
     if (!(o instanceof Wrapper w)) {
       throw new JMSRuntimeException("not a wrapper: " + o.getClass());
