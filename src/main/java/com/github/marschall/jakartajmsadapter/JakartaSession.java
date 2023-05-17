@@ -21,7 +21,8 @@ import jakarta.jms.TextMessage;
 import jakarta.jms.Topic;
 import jakarta.jms.TopicSubscriber;
 
-final class JakartaSession implements Session {
+sealed class JakartaSession implements Session
+  permits JakartaQueueSession {
 
   private final javax.jms.Session javaxSession;
   private MessageListener listener;

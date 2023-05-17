@@ -6,7 +6,8 @@ import jakarta.jms.JMSException;
 import jakarta.jms.Message;
 import jakarta.jms.MessageProducer;
 
-final class JakartaMessageProducer implements MessageProducer {
+sealed class JakartaMessageProducer implements MessageProducer
+  permits JakartaQueueSender {
 
   private final javax.jms.MessageProducer javaxMessageProducer;
 

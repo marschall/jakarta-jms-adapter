@@ -6,7 +6,7 @@ import jakarta.jms.MessageConsumer;
 import jakarta.jms.MessageListener;
 
 sealed class JakartaMessageConsumer implements MessageConsumer
-  permits JakartaTopicSubscriber {
+  permits JakartaTopicSubscriber, JakartaQueueReceiver {
 
   private final javax.jms.MessageConsumer javaxMessageConsumer;
   private MessageListener listener;

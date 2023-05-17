@@ -10,7 +10,8 @@ import jakarta.jms.ServerSessionPool;
 import jakarta.jms.Session;
 import jakarta.jms.Topic;
 
-final class JakartaConnection implements Connection {
+sealed class JakartaConnection implements Connection
+  permits JakartaQueueConnection {
 
   private final javax.jms.Connection javaxConnection;
 
