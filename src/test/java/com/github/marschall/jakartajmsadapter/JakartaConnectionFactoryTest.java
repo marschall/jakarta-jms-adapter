@@ -1,6 +1,7 @@
 package com.github.marschall.jakartajmsadapter;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -14,6 +15,11 @@ import org.springframework.jms.connection.SingleConnectionFactory;
 import org.springframework.jms.core.JmsOperations;
 import org.springframework.jms.core.JmsTemplate;
 
+import jakarta.jms.ConnectionFactory;
+import jakarta.jms.JMSContext;
+import jakarta.jms.JMSException;
+import jakarta.jms.Message;
+import jakarta.jms.Queue;
 import jakarta.jms.TextMessage;
 
 public class JakartaConnectionFactoryTest {
@@ -30,21 +36,27 @@ public class JakartaConnectionFactoryTest {
 
   private JmsOperations jmsTemplate;
 
+  private ConnectionFactory connectionFactory;
+
   @Before
   public void setUp() {
-    jakarta.jms.ConnectionFactory connectionFactory = new JakartaConnectionFactory(this.broker.createConnectionFactory());
+    connectionFactory = new JakartaConnectionFactory(this.broker.createConnectionFactory());
     this.jmsTemplate = new JmsTemplate(new SingleConnectionFactory(connectionFactory));
   }
 
   @Test
-  public void sendAndReceive() {
-    this.jmsTemplate.send(QUEUE_NAME, session -> session.createTextMessage("hello Jakarta"));
-    this.jmsTemplate.receive(QUEUE_NAME);
+  public void sendAndReceive() throws JMSException {
+    String messageString = "hello Jakarta";
+    this.jmsTemplate.send(QUEUE_NAME, session -> session.createTextMessage(messageString));
+    Message message = this.jmsTemplate.receive(QUEUE_NAME);
+    assertNotNull(message);
+    assertEquals(messageString, message.getBody(String.class));
   }
 
   @Test
   public void browse() {
-    this.jmsTemplate.send(QUEUE_NAME, session -> session.createTextMessage("hello Jakarta"));
+    String messageString = "hello Jakarta";
+    this.jmsTemplate.send(QUEUE_NAME, session -> session.createTextMessage(messageString));
     List<String> textMessages = this.jmsTemplate.browse(QUEUE_NAME, (session, browser) -> {
       List<String> messages = new ArrayList<>(1);
       @SuppressWarnings("rawtypes")
@@ -57,14 +69,19 @@ public class JakartaConnectionFactoryTest {
       }
       return messages;
     });
-    assertEquals(List.of("hello Jakarta"), textMessages);
+    assertEquals(List.of(messageString), textMessages);
   }
 
-//  @Test(expected = AbstractMethodError.class)
-//  public void jmsContext() {
-//    ActiveMQConnectionFactory connectionFactory = this.broker.createConnectionFactory();
-//    JMSContext jmsContext = connectionFactory.createContext();
-//    assertNotNull(jmsContext);
-//  }
+  @Test
+  public void jmsContext() throws JMSException {
+    try (JMSContext jmsContext = this.connectionFactory.createContext()) {
+      Queue queue = jmsContext.createQueue(QUEUE_NAME);
+      String sent = "hello Jakarta";
+      jmsContext.createProducer().send(queue, sent);
+      // #receiveBody is not supported
+      Message message = jmsContext.createConsumer(queue).receive();
+      assertEquals(sent, message.getBody(String.class));
+    }
+  }
 
 }
