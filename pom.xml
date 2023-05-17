@@ -23,14 +23,14 @@
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
-        <version>5.9.2</version>
+        <version>5.9.3</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>org.springframework</groupId>
         <artifactId>spring-framework-bom</artifactId>
-        <version>6.0.5</version>
+        <version>6.0.9</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -335,7 +335,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputTimestamp>2023-03-01T06:40:38Z</project.build.outputTimestamp>
-    <activemq.version>5.17.4</activemq.version>
+    <activemq.version>5.18.1</activemq.version>
   </properties>
 
 </project>
