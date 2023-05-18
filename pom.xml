@@ -184,6 +184,7 @@
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
+          <notimestamp>true</notimestamp>
           <show>public</show>
           <links>
             <link>https://docs.oracle.com/en/java/javase/17/docs/api/</link>
