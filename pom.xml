@@ -5,9 +5,9 @@
   <artifactId>jakarta-jms-adapter</artifactId>
   <version>1.2.0-SNAPSHOT</version>
   
-  <name>Directory Keystore</name>
+  <name>Jakarta JMS Adapter</name>
   <inceptionYear>2023</inceptionYear>
-  <description>A keystore that is based on directories.</description>
+  <description>Adapts a javax.jms JMS provider to a jakarta.jms JMS provider.</description>
 
   <url>https://github.com/marschall/jakarta-jms-adapter</url>
 
