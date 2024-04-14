@@ -14,6 +14,9 @@ public interface Wrapper {
   Object getJavaxObject();
 
   static <T> T unwrapObject(Object o, Class<T> clazz) throws JMSException {
+    if (o == null) {
+      return null;
+    }
     if (!(o instanceof Wrapper w)) {
       throw new JMSException("not a wrapper: " + o.getClass());
     }
@@ -25,6 +28,9 @@ public interface Wrapper {
   }
 
   static <T> T unwrapUnchecked(Object o, Class<T> clazz) throws JMSRuntimeException {
+    if (o == null) {
+      return null;
+    }
     if (!(o instanceof Wrapper w)) {
       throw new JMSRuntimeException("not a wrapper: " + o.getClass());
     }
