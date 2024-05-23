@@ -5,7 +5,12 @@ import java.util.Objects;
 import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
 
-abstract sealed class JakartaDestination implements Destination, Wrapper
+/**
+ * Adapts a Java EE {@link javax.jms.Destination} to a Jakarta EE {@link Destination}.
+ * <p>
+ * {@code public} for cases where a destination is looked up through JNDI.
+ */
+public abstract sealed class JakartaDestination implements Destination, Wrapper
     permits JakartaQueue, JakartaTopic {
 
   private final javax.jms.Destination javaxDestination;
@@ -25,7 +30,7 @@ abstract sealed class JakartaDestination implements Destination, Wrapper
     return this.javaxDestination.toString();
   }
 
-  static Destination fromJavax(javax.jms.Destination destination) throws JMSException {
+public static Destination fromJavax(javax.jms.Destination destination) throws JMSException {
     if (destination instanceof javax.jms.Topic topic) {
       if (topic instanceof javax.jms.TemporaryTopic temporaryTopic) {
         return new JakartaTemporaryTopic(temporaryTopic);
