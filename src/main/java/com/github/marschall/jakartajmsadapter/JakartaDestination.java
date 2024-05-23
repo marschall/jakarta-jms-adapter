@@ -30,7 +30,7 @@ public abstract sealed class JakartaDestination implements Destination, Wrapper
     return this.javaxDestination.toString();
   }
 
-public static Destination fromJavax(javax.jms.Destination destination) throws JMSException {
+public static Destination fromJavax(javax.jms.Destination destination) {
     if (destination == null) {
       return (Destination) null;
     }
@@ -45,7 +45,7 @@ public static Destination fromJavax(javax.jms.Destination destination) throws JM
       }
       return new JakartaQueue(queue);
     } else {
-      throw new JMSException("unknown destination type: " + destination.getClass());
+      throw new ClassCastException("unknown destination type: " + destination.getClass());
     }
   }
 

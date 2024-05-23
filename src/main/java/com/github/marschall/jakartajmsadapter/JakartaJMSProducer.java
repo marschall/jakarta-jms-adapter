@@ -494,11 +494,7 @@ final class JakartaJMSProducer implements JMSProducer {
     } catch (javax.jms.JMSRuntimeException e) {
       throw JMSRuntimeExceptionUtil.adaptException(e);
     }
-    try {
-      return JakartaDestination.fromJavax(javaxDestination);
-    } catch (JMSException e) {
-      throw new JMSRuntimeException("unknown destination type: " + javaxDestination.getClass());
-    }
+    return JakartaDestination.fromJavax(javaxDestination);
   }
 
 }
