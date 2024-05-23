@@ -31,6 +31,9 @@ public abstract sealed class JakartaDestination implements Destination, Wrapper
   }
 
 public static Destination fromJavax(javax.jms.Destination destination) throws JMSException {
+    if (destination == null) {
+      return (Destination) null;
+    }
     if (destination instanceof javax.jms.Topic topic) {
       if (topic instanceof javax.jms.TemporaryTopic temporaryTopic) {
         return new JakartaTemporaryTopic(temporaryTopic);
