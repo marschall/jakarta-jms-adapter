@@ -92,7 +92,7 @@ sealed class JakartaMessage implements Message, Wrapper
   @Override
   public Destination getJMSReplyTo() throws JMSException {
     try {
-      return JakartaDestination.fromJavax(this.javaxMessage.getJMSReplyTo());
+      return Wrapper.fromJavaxDestination(this.javaxMessage.getJMSReplyTo());
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }
@@ -110,7 +110,7 @@ sealed class JakartaMessage implements Message, Wrapper
   @Override
   public Destination getJMSDestination() throws JMSException {
     try {
-      return JakartaDestination.fromJavax(this.javaxMessage.getJMSDestination());
+      return Wrapper.fromJavaxDestination(this.javaxMessage.getJMSDestination());
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }

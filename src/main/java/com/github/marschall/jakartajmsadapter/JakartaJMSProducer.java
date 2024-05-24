@@ -7,9 +7,7 @@ import java.util.Set;
 
 import jakarta.jms.CompletionListener;
 import jakarta.jms.Destination;
-import jakarta.jms.JMSException;
 import jakarta.jms.JMSProducer;
-import jakarta.jms.JMSRuntimeException;
 import jakarta.jms.Message;
 
 final class JakartaJMSProducer implements JMSProducer {
@@ -494,11 +492,7 @@ final class JakartaJMSProducer implements JMSProducer {
     } catch (javax.jms.JMSRuntimeException e) {
       throw JMSRuntimeExceptionUtil.adaptException(e);
     }
-    try {
-      return JakartaDestination.fromJavax(javaxDestination);
-    } catch (JMSException e) {
-      throw new JMSRuntimeException("unknown destination type: " + javaxDestination.getClass());
-    }
+    return Wrapper.fromJavaxDestination(javaxDestination);
   }
 
 }

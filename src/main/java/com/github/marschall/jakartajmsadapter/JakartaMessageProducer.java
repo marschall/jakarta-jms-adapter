@@ -126,7 +126,7 @@ sealed class JakartaMessageProducer implements MessageProducer
   @Override
   public Destination getDestination() throws JMSException {
     try {
-      return JakartaDestination.fromJavax(this.javaxMessageProducer.getDestination());
+      return Wrapper.fromJavaxDestination(this.javaxMessageProducer.getDestination());
     } catch (javax.jms.JMSException e) {
       throw JMSExceptionUtil.adaptException(e);
     }

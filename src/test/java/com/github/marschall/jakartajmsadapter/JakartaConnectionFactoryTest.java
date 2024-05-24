@@ -2,6 +2,7 @@ package com.github.marschall.jakartajmsadapter;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -48,6 +49,19 @@ public class JakartaConnectionFactoryTest {
   public void sendAndReceive() throws JMSException {
     String messageString = "hello Jakarta";
     this.jmsTemplate.send(QUEUE_NAME, session -> session.createTextMessage(messageString));
+    Message message = this.jmsTemplate.receive(QUEUE_NAME);
+    assertNotNull(message);
+    assertEquals(messageString, message.getBody(String.class));
+  }
+
+  @Test
+  public void convertAndSend() throws JMSException {
+    String messageString = "hello Jakarta";
+    this.jmsTemplate.convertAndSend(QUEUE_NAME, messageString, message -> {
+      assertNull("JMSReplyTo", message.getJMSReplyTo());
+      assertNull("JMSDestination", message.getJMSDestination());
+      return message;
+    });
     Message message = this.jmsTemplate.receive(QUEUE_NAME);
     assertNotNull(message);
     assertEquals(messageString, message.getBody(String.class));
