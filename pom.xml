@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.marschall</groupId>
   <artifactId>jakarta-jms-adapter</artifactId>
-  <version>1.4.0</version>
+  <version>1.4.1-SNAPSHOT</version>
   
   <name>Jakarta JMS Adapter</name>
   <inceptionYear>2023</inceptionYear>
@@ -341,7 +341,7 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-    <project.build.outputTimestamp>2024-05-24T19:52:30Z</project.build.outputTimestamp>
+    <project.build.outputTimestamp>2024-05-24T19:58:07Z</project.build.outputTimestamp>
     <activemq.version>5.18.4</activemq.version>
   </properties>
 
