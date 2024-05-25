@@ -29,6 +29,8 @@ public interface Wrapper {
    *         will be a {@link Topic} if {@code destination} is a {@link javax.jms.Topic},
    *         will be a {@link Queue} if {@code destination} is a {@link javax.jms.Queue},
    *         will be a {@code null} if {@code destination} is {@code null}
+   * @throws IllegalArgumentException if {@code destination} is neither
+   *         a {@link javax.jms.Topic}, {@link javax.jms.Queue} or {@code null}
    */
   static Destination fromJavaxDestination(javax.jms.Destination destination) {
     if (destination == null) {
