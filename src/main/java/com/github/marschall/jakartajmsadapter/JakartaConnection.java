@@ -11,7 +11,7 @@ import jakarta.jms.Session;
 import jakarta.jms.Topic;
 
 sealed class JakartaConnection implements Connection
-  permits JakartaQueueConnection {
+  permits JakartaQueueConnection, JakartaTopicConnection {
 
   private final javax.jms.Connection javaxConnection;
 

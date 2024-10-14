@@ -22,7 +22,7 @@ import jakarta.jms.Topic;
 import jakarta.jms.TopicSubscriber;
 
 sealed class JakartaSession implements Session
-  permits JakartaQueueSession {
+  permits JakartaQueueSession, JakartaTopicSession {
 
   private final javax.jms.Session javaxSession;
   private MessageListener listener;

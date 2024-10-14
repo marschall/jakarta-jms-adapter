@@ -7,7 +7,7 @@ import jakarta.jms.Message;
 import jakarta.jms.MessageProducer;
 
 sealed class JakartaMessageProducer implements MessageProducer
-  permits JakartaQueueSender {
+  permits JakartaQueueSender, JakartaTopicPublisher {
 
   private final javax.jms.MessageProducer javaxMessageProducer;
 
