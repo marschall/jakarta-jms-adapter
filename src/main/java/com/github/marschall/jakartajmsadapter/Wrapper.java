@@ -1,11 +1,10 @@
 package com.github.marschall.jakartajmsadapter;
 
-import javax.jms.Queue;
-import javax.jms.Topic;
-
 import jakarta.jms.Destination;
 import jakarta.jms.JMSException;
 import jakarta.jms.JMSRuntimeException;
+import jakarta.jms.Queue;
+import jakarta.jms.Topic;
 
 /**
  * Wraps a javax.jms object and adapts it to a jakarta.jms object.
@@ -38,18 +37,54 @@ public interface Wrapper {
       return null;
     }
     if (destination instanceof javax.jms.Topic topic) {
-      if (topic instanceof javax.jms.TemporaryTopic temporaryTopic) {
-        return new JakartaTemporaryTopic(temporaryTopic);
-      }
-      return new JakartaTopic(topic);
+      return fromJavaxTopic(topic);
     } else if (destination instanceof javax.jms.Queue queue) {
-      if (queue instanceof javax.jms.TemporaryQueue temporaryQueue) {
-        return new JakartaTemporaryQueue(temporaryQueue);
-      }
-      return new JakartaQueue(queue);
+      return fromJavaxQueue(queue);
     } else {
       throw new IllegalArgumentException("unknown destination type: " + destination.getClass());
     }
+  }
+
+  /**
+   * Adapts a Java EE {@link javax.jms.Topic} to a Jakarta EE {@link Topic}.
+   * <p>
+   * {@code public} for cases where a destination is looked up through JNDI and the implementation implements both {@link javax.jms.Topic}
+   * and {@link javax.jms.Topic}.
+   *
+   * @param topic the Topic to adapt,
+   *        {@code null} allowed
+   * @return the adapted Topic,
+   *         will be a {@code null} if {@code destination} is {@code null}
+   */
+  static Topic fromJavaxTopic(javax.jms.Topic topic) {
+    if (topic == null) {
+      return null;
+    }
+    if (topic instanceof javax.jms.TemporaryTopic temporaryTopic) {
+      return new JakartaTemporaryTopic(temporaryTopic);
+    }
+    return new JakartaTopic(topic);
+  }
+
+  /**
+   * Adapts a Java EE {@link javax.jms.Queue} to a Jakarta EE {@link Queue}.
+   * <p>
+   * {@code public} for cases where a destination is looked up through JNDI and the implementation implements both {@link javax.jms.Queue}
+   * and {@link javax.jms.Topic}.
+   *
+   * @param queue the queue to adapt,
+   *        {@code null} allowed
+   * @return the adapted queue,
+   *         will be a {@code null} if {@code destination} is {@code null}
+   */
+  static Queue fromJavaxQueue(javax.jms.Queue queue) {
+    if (queue == null) {
+      return null;
+    }
+    if (queue instanceof javax.jms.TemporaryQueue temporaryQueue) {
+      return new JakartaTemporaryQueue(temporaryQueue);
+    }
+    return new JakartaQueue(queue);
   }
 
   static <T> T unwrapObject(Object o, Class<T> clazz) throws JMSException {
