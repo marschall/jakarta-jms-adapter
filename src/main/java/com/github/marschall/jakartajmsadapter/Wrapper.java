@@ -36,7 +36,9 @@ public interface Wrapper {
       // JMSReplyTo or JMSDestination can be null
       return null;
     }
-    if (destination instanceof javax.jms.Topic topic) {
+    if (destination instanceof javax.jms.Queue && destination instanceof javax.jms.Topic) {
+      return new JakartaQueueTopic(destination);
+    } else if (destination instanceof javax.jms.Topic topic) {
       return fromJavaxTopic(topic);
     } else if (destination instanceof javax.jms.Queue queue) {
       return fromJavaxQueue(queue);
