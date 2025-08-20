@@ -11,7 +11,7 @@ import jakarta.jms.JMSException;
  * Adapts a {@link javax.jms.ConnectionFactory} to a {@link jakarta.jms.ConnectionFactory}
  */
 public sealed class JakartaConnectionFactory implements ConnectionFactory
-  permits JakartaQueueConnectionFactory, JakartaTopicConnectionFactory {
+  permits JakartaQueueConnectionFactory, JakartaTopicConnectionFactory, JakartaQueueTopicConnectionFactory {
 
   private final javax.jms.ConnectionFactory javaxConnectionFactory;
 

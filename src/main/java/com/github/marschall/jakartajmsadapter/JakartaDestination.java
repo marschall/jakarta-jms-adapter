@@ -5,7 +5,7 @@ import java.util.Objects;
 import jakarta.jms.Destination;
 
 abstract sealed class JakartaDestination implements Destination, Wrapper
-    permits JakartaQueue, JakartaTopic {
+    permits JakartaQueue, JakartaTopic, JakartaQueueTopic {
 
   private final javax.jms.Destination javaxDestination;
 
