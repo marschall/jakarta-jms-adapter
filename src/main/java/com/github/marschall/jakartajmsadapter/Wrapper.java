@@ -27,6 +27,7 @@ public interface Wrapper {
    * @return the adapted destination,
    *         will be a {@link Topic} if {@code destination} is a {@link javax.jms.Topic},
    *         will be a {@link Queue} if {@code destination} is a {@link javax.jms.Queue},
+   *         will be a {@link Queue} and {@link Topic} if {@code destination} is a {@link javax.jms.Queue} and {@link javax.jms.Topic},
    *         will be a {@code null} if {@code destination} is {@code null}
    * @throws IllegalArgumentException if {@code destination} is neither
    *         a {@link javax.jms.Topic}, {@link javax.jms.Queue} or {@code null}
@@ -36,9 +37,12 @@ public interface Wrapper {
       // JMSReplyTo or JMSDestination can be null
       return null;
     }
-    if (destination instanceof javax.jms.Queue && destination instanceof javax.jms.Topic) {
-      return new JakartaQueueTopic(destination);
-    } else if (destination instanceof javax.jms.Topic topic) {
+    if (destination instanceof javax.jms.Topic topic) {
+      if (topic instanceof javax.jms.Queue queue) {
+        @SuppressWarnings({"unchecked", "rawtypes"})
+        Destination jakartaDestination = new JakartaQueueTopic(queue);
+        return jakartaDestination;
+      }
       return fromJavaxTopic(topic);
     } else if (destination instanceof javax.jms.Queue queue) {
       return fromJavaxQueue(queue);
