@@ -13,4 +13,10 @@ javax.jms.ConnectionFactory javaxConnectionFactory = ...;
 jakarta.jms.ConnectionFactory jakartaConnectionFactory = new JakartaConnectionFactory(javaxConnectionFactory);
 ```
 
+```java
+InitialContext ctx = new InitialContext(env);
+
+Queue queue = Wrapper.fromJavaxQueue((javax.jms.Queue) ctx.lookup("queue JNDI here"));
+```
+
 The project requires JDK 17 and makes extensive use of sealed classes.

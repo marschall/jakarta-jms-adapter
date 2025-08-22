@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+
 import org.junit.jupiter.api.Test;
 
 import jakarta.jms.Destination;
@@ -31,6 +34,12 @@ class WrapperTest {
     assertTrue(destination instanceof Topic);
     assertSame(javaxDestination, Wrapper.unwrapObject(destination, javax.jms.Queue.class));
     assertSame(javaxDestination, Wrapper.unwrapObject(destination, javax.jms.Topic.class));
+  }
+  
+  @Test
+  void methodVisibility() throws ReflectiveOperationException {
+    Method method = Wrapper.class.getDeclaredMethod("fromJavaxTopic", javax.jms.Topic.class);
+    assertTrue(Modifier.isPublic(method.getModifiers()));
   }
 
   static final class QueueAndTopic implements javax.jms.Queue, javax.jms.Topic {
