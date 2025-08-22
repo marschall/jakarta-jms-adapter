@@ -21,29 +21,29 @@ final class JMSExceptionUtil {
   }
 
   static JMSException adaptException(javax.jms.JMSException e) {
-    if (e instanceof javax.jms.IllegalStateException illegalStateException) {
+    if (e instanceof javax.jms.IllegalStateException) {
       return new IllegalStateException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.InvalidClientIDException invalidClientIDException) {
+    } else if (e instanceof javax.jms.InvalidClientIDException) {
       return new InvalidClientIDException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.InvalidDestinationException invalidDestinationException) {
+    } else if (e instanceof javax.jms.InvalidDestinationException) {
       return new InvalidDestinationException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.InvalidSelectorException invalidSelectorException) {
+    } else if (e instanceof javax.jms.InvalidSelectorException) {
       return new InvalidSelectorException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.JMSSecurityException jmsSecurityException) {
+    } else if (e instanceof javax.jms.JMSSecurityException) {
       return new JMSSecurityException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.MessageEOFException messageEOFException) {
+    } else if (e instanceof javax.jms.MessageEOFException) {
       return new MessageEOFException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.MessageFormatException messageFormatException) {
+    } else if (e instanceof javax.jms.MessageFormatException) {
       return new MessageFormatException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.MessageNotReadableException messageNotReadableException) {
+    } else if (e instanceof javax.jms.MessageNotReadableException) {
       return new MessageNotReadableException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.MessageNotWriteableException messageNotWriteableException) {
+    } else if (e instanceof javax.jms.MessageNotWriteableException) {
       return new MessageNotWriteableException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.ResourceAllocationException resourceAllocationException) {
+    } else if (e instanceof javax.jms.ResourceAllocationException) {
       return new ResourceAllocationException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.TransactionInProgressException transactionInProgressException) {
+    } else if (e instanceof javax.jms.TransactionInProgressException) {
       return new TransactionInProgressException(e.getMessage(), e.getErrorCode(), e);
-    } else if (e instanceof javax.jms.TransactionRolledBackException transactionRolledBackException) {
+    } else if (e instanceof javax.jms.TransactionRolledBackException) {
       return new TransactionRolledBackException(e.getMessage(), e.getErrorCode(), e);
     } else {
       return new JMSException(e.getMessage(), e.getErrorCode(), e);
