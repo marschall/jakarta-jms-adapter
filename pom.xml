@@ -180,9 +180,11 @@
   <build>
     <plugins>
       <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <groupId>org.sonatype.central</groupId>
+        <artifactId>central-publishing-maven-plugin</artifactId>
+        <extensions>true</extensions>
         <configuration>
-          <release>17</release>
+          <publishingServerId>central</publishingServerId>
         </configuration>
       </plugin>
       <plugin>
@@ -195,7 +197,6 @@
             <link>https://jakarta.ee/specifications/platform/8/apidocs/</link>
             <link>https://jakarta.ee/specifications/platform/10/apidocs/</link>
           </links>
-          <release>17</release>
           <notimestamp>true</notimestamp>
         </configuration>
         <executions>
@@ -253,6 +254,11 @@
           <version>3.5.0</version>
         </plugin>
         <plugin>
+          <groupId>org.sonatype.central</groupId>
+          <artifactId>central-publishing-maven-plugin</artifactId>
+          <version>0.8.0</version>
+        </plugin>
+        <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.14.0</version>
         </plugin>
@@ -306,7 +312,6 @@
           <version>3.1.1</version>
         </plugin>
         <plugin>
-          <groupId>org.codehaus.mojo</groupId>
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.18.0</version>
         </plugin>
@@ -320,12 +325,10 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
-                <phase>verify</phase>
                 <goals>
                   <goal>sign</goal>
                 </goals>
@@ -341,6 +344,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <project.build.outputTimestamp>2024-10-15T05:01:55Z</project.build.outputTimestamp>
+    <maven.compiler.release>17</maven.compiler.release>
     <activemq.version>5.18.7</activemq.version>
   </properties>
 
